@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="FilterBy">
+        <item>Show all</item>
+        <item>Name</item>
+        <item>Genre</item>
+        <item>Year</item>
+        <item>Company</item>
+    </string-array>
+
+
+</resources>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +24,8 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
 
     private OnFragmentInteractionListener mListener;
     private Button searchButton;
-    private EditText[] textInputs;
-    private TextView[] textLabels;
+    private EditText textInputs;
+    private TextView textLabels;
     private Spinner spinner;
     private int currentPosition;
 
@@ -55,7 +56,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                 if (mListener != null) {
                     String text = "";
                     if (currentPosition!= 0) {
-                        text = textInputs[currentPosition].getText().toString();
+                        text = textInputs.getText().toString();
                     }
                     mListener.onFragmentInteraction(text,FILTER_BY.values()[0]);
                 }
@@ -88,15 +89,19 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         currentPosition = spinner.getSelectedItemPosition();
         Log.e("search:","outside loop, position is " + position);
-        for (int i=1 ; i<5 ; i++){
-            if (currentPosition != i){
-                textLabels[i].setTypeface(null, Typeface.NORMAL);
-                textInputs[i].setText("");
-                textInputs[i].setEnabled(false);
+
+        if (currentPosition == 0){
+            textInputs.setText("");
+            textInputs.setEnabled(false);
+        }
+        else if (currentPosition != 0){
+            textInputs.setText("");
+            textInputs.setEnabled(true);
+            if (currentPosition == 3){
+                textInputs.setInputType(InputType.TYPE_CLASS_NUMBER);
             }
-            else if (currentPosition == i){
-                textLabels[i].setTypeface(null, Typeface.BOLD);
-                textInputs[i].setEnabled(true);
+            else {
+                textInputs.setInputType(InputType.TYPE_CLASS_TEXT);
             }
         }
     }
@@ -115,16 +120,8 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
     private void assignViewById(View view){
         searchButton = view.findViewById(R.id.buttonPerformSearch);
         //0.reserve 1. Name; 2.Genre; 3.Year; 4.Company
-        textInputs = new EditText[5];
-        textLabels = new TextView[5];
-        textLabels[1] = view.findViewById(R.id.fragmentNameTextView);
-        textLabels[2] = view.findViewById(R.id.fragmentGenreTextView);
-        textLabels[3] = view.findViewById(R.id.fragmentYearTextView);
-        textLabels[4] = view.findViewById(R.id.fragmentCompanyTextView);
-        textInputs[1] = view.findViewById(R.id.editTextName);
-        textInputs[2] = view.findViewById(R.id.editTextGenre);
-        textInputs[3] = view.findViewById(R.id.editTextYear);
-        textInputs[4] = view.findViewById(R.id.editTextCompany);
+        textLabels = view.findViewById(R.id.fragmentNameTextView);
+        textInputs = view.findViewById(R.id.editTextName);
         spinner = view.findViewById(R.id.spinner);
 
     }

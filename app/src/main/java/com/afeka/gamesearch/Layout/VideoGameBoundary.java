@@ -21,6 +21,14 @@ public class VideoGameBoundary {
         this.company = company;
     }
 
+    public VideoGameBoundary (VideoGame videoGame){
+        super();
+        this.gameName = videoGame.getGameName();
+        this.genre = videoGame.getGenre().toString();
+        this.company = videoGame.getCompany();
+        this.deploymentYear = videoGame.getDeploymentYear();
+    }
+
     public String getGameName() {
         return gameName;
     }

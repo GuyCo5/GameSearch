@@ -3,14 +3,16 @@ package com.afeka.gamesearch.Model;
 public class User {
 
     private String userName;
+    private String password;
     private USERS role;
 
     public User() {
     }
 
-    public User(String userName, USERS role) {
+    public User(String userName, String password, USERS role) {
         super();
         this.userName = userName;
+        this.password = password;
         this.role = role;
     }
 
@@ -20,6 +22,14 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public USERS getRole() {

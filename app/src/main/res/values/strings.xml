@@ -12,4 +12,10 @@
     <string name="genre">Genre</string>
     <string name="name">Name</string>
     <string name="filter_by">Filter by</string>
+    <string name="preference_file_key">userKey</string>
+    <string name="password_key">passwordKey</string>
+    <string name="username_key">usernameKey</string>
+    <string name="userType_key">userTypeKey</string>
+    <string name="defaultKeyValue" />
+    <string name="server_url">http://10.0.2.2:8095</string>
 </resources>

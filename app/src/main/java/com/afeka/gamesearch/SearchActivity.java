@@ -69,7 +69,7 @@ public class SearchActivity extends AppCompatActivity implements SearchFragment.
         });
 
         gameRestIntegration = new GameRestIntegration(this,this);
-
+        gameRestIntegration.performSearch("",FILTER_BY.ALL);
     }
 
 

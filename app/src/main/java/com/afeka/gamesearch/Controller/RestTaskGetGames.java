@@ -8,23 +8,20 @@ import com.afeka.gamesearch.Model.VideoGame;
 import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 
-public class RestTaskGetGames extends AsyncTask<String,Void, ArrayList<VideoGame>> {
+public class RestTaskGetGames extends AsyncTask<Void,Void, ArrayList<VideoGame>> {
 
     private String url;
     private RestTemplate restTemplate;
     private ProgressDialog dialog;
-//    private Activity activity;
 
     public RestTaskGetGames(String url, Activity activity) {
         this.url = url;
-//        this.activity = activity;
         restTemplate = new RestTemplate();
         dialog = new ProgressDialog(activity);
-
     }
 
     @Override
-    protected ArrayList<VideoGame> doInBackground(String... strings) {
+    protected ArrayList<VideoGame> doInBackground(Void... voids) {
         ArrayList<VideoGame> videoGameList = new ArrayList<>();
         VideoGameBoundary[] list = restTemplate.getForObject(url,VideoGameBoundary[].class);
         if (list != null) {
@@ -40,7 +37,6 @@ public class RestTaskGetGames extends AsyncTask<String,Void, ArrayList<VideoGame
         super.onPreExecute();
         dialog.setMessage("loading....");
         dialog.show();
-        // dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
     }
 
@@ -50,8 +46,5 @@ public class RestTaskGetGames extends AsyncTask<String,Void, ArrayList<VideoGame
         if (dialog.isShowing()) {
             dialog.dismiss();
         }
-
     }
-
-
 }

@@ -5,14 +5,19 @@ import android.os.Bundle;
 
 import com.afeka.gamesearch.Controller.FILTER_BY;
 import com.afeka.gamesearch.Controller.GameRestIntegration;
+import com.afeka.gamesearch.Model.USERS;
 import com.afeka.gamesearch.Model.VideoGame;
 import com.afeka.gamesearch.View.GameAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
@@ -20,7 +25,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class SearchActivity extends AppCompatActivity implements SearchFragment.OnFragmentInteractionListener, GameRestIntegration.OnRestInteractionListener {
+public class SearchActivity extends AppCompatActivity
+        implements SearchFragment.OnFragmentInteractionListener,
+                    GameRestIntegration.OnRestInteractionListener,
+        NavigationView.OnNavigationItemSelectedListener {
     private RecyclerView mRecyclerView;
     private GameAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -32,6 +40,8 @@ public class SearchActivity extends AppCompatActivity implements SearchFragment.
 
     private FloatingActionButton fab;
     private GameRestIntegration gameRestIntegration;
+
+    private UserManager userManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +68,7 @@ public class SearchActivity extends AppCompatActivity implements SearchFragment.
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        userManager = new UserManager(getBaseContext());
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -83,9 +94,42 @@ public class SearchActivity extends AppCompatActivity implements SearchFragment.
 
 
     @Override
-    public void onRestInteraction(ArrayList<VideoGame> videoGameList) {
+    public void onRestGetComplete(ArrayList<VideoGame> videoGameList) {
         this.videoGameList = videoGameList;
         mAdapter.setVideoGameList(videoGameList);
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onRestAddComplete(VideoGame videoGame) {
+
+    }
+
+    @Override
+    public void onRestDeleteComplete() {
+
+    }
+
+    @Override
+    public void onRestUpdateComplete(VideoGame videoGame) {
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        USERS type = userManager.getUserType();
+        if (type == USERS.admin){
+            getMenuInflater().inflate(R.menu.toolbar_admin, menu);
+        } else if (type == USERS.player) {
+            getMenuInflater().inflate(R.menu.toolbar_user, menu);
+        }
+
+
+        return true;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        return false;
     }
 }

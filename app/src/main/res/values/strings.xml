@@ -17,5 +17,5 @@
     <string name="username_key">usernameKey</string>
     <string name="userType_key">userTypeKey</string>
     <string name="defaultKeyValue" />
-    <string name="server_url">http://10.0.2.2:8095</string>
+    <string name="server_url">http://10.0.2.2:8090</string>
 </resources>

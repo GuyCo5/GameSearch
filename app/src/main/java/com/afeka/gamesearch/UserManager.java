@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.afeka.gamesearch.Model.USERS;
+import com.afeka.gamesearch.Model.User;
 
 public class UserManager {
 
@@ -60,6 +61,28 @@ public class UserManager {
         this.userType = userType;
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(context.getString(R.string.userType_key),userType.toString());
+        editor.apply();
+    }
+
+    public void updateFullUser (User user){
+        setUserName(user.getUserName());
+        setPassword(user.getPassword());
+        setUserType(userType);
+    }
+
+    public User getFullUser (){
+        User rv = new User();
+        rv.setUserName(this.getUserName());
+        rv.setPassword(this.getPassword());
+        rv.setRole(this.getUserType());
+        return rv;
+    }
+
+    public void clearUser(){
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.remove(context.getString(R.string.username_key));
+        editor.remove(context.getString(R.string.password_key));
+        editor.remove(context.getString(R.string.userType_key));
         editor.apply();
     }
 }

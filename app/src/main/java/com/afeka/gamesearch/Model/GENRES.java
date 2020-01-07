@@ -1,5 +1,5 @@
 package com.afeka.gamesearch.Model;
 
 public enum GENRES {
-    Fighting,Stealth,Survival,BattleRoyale,Rhythm
+    FIGHTING, STEALTH, SURVIVAL, BATTLE_ROYAL, RHYTHM
 }

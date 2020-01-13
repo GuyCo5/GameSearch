@@ -8,5 +8,9 @@
         <item>Company</item>
     </string-array>
 
+    <string-array name="UserType">
+        <item>Admin</item>
+        <item>User</item>
+    </string-array>
 
 </resources>

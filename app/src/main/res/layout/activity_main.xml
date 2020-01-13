@@ -19,13 +19,13 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
 
     <Button
-        android:id="@+id/main_button_search"
+        android:id="@+id/main_button_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:onClick="onClickSearch"
-        android:text="@string/search"
+        android:onClick="onClickLogIn"
+        android:text="@string/log_in"
         android:textSize="30sp" />
 
 
@@ -33,10 +33,9 @@
         android:id="@+id/main_button_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/main_button_search"
+        android:layout_below="@id/main_button_login"
         android:layout_centerHorizontal="true"
-        android:text="Button"
+        android:onClick="onClickSignUp"
+        android:text="@string/sign_up"
         android:textSize="30sp" />
-
 </RelativeLayout>
-

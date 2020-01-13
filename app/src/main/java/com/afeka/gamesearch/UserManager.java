@@ -1,6 +1,5 @@
 package com.afeka.gamesearch;
 
-
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -21,6 +20,7 @@ public class UserManager {
         sharedPref = context.getSharedPreferences(
                 context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         defaultValue = context.getString(R.string.defaultKeyValue);
+
     }
 
     public String getUserName() {
@@ -52,7 +52,12 @@ public class UserManager {
 
     public USERS getUserType() {
         if (userType == null){
-            userType = USERS.valueOf(sharedPref.getString(context.getString(R.string.userType_key),defaultValue));
+            String type = sharedPref.getString(context.getString(R.string.userType_key),defaultValue);
+            if (!type.trim().equals(""))
+                userType = USERS.valueOf(type);
+            else {
+                userType = USERS.INVALID;
+            }
         }
         return userType;
     }
@@ -67,7 +72,7 @@ public class UserManager {
     public void updateFullUser (User user){
         setUserName(user.getUserName());
         setPassword(user.getPassword());
-        setUserType(userType);
+        setUserType(user.getRole());
     }
 
     public User getFullUser (){

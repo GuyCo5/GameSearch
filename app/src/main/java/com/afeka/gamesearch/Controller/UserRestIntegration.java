@@ -10,14 +10,14 @@ import com.afeka.gamesearch.R;
 
 import java.util.concurrent.ExecutionException;
 
-public class UserRestIntefration {
+public class UserRestIntegration {
 
     private String baseUrl;
     private OnRestInteractionListener binder;
     private Activity activity;
 
-    public UserRestIntefration(OnRestInteractionListener binder, Activity activity) {
-        this.baseUrl = activity.getResources().getString(R.string.server_url);;
+    public UserRestIntegration(OnRestInteractionListener binder, Activity activity) {
+        this.baseUrl = activity.getResources().getString(R.string.server_url);
         this.binder = binder;
         this.activity = activity;
     }

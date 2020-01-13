@@ -118,9 +118,9 @@ public class SearchActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         USERS type = userManager.getUserType();
-        if (type == USERS.admin){
+        if (type == USERS.ADMIN){
             getMenuInflater().inflate(R.menu.toolbar_admin, menu);
-        } else if (type == USERS.player) {
+        } else if (type == USERS.PLAYER) {
             getMenuInflater().inflate(R.menu.toolbar_user, menu);
         }
 

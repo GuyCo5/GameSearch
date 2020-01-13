@@ -11,14 +11,14 @@ public class RestTaskPostUser extends AsyncTask<Void,Void, UserBoundary> {
 
     private String url;
     private RestTemplate restTemplate;
-    private ProgressDialog dialog;
+
     private UserBoundary registerUser;
 
     public RestTaskPostUser(String url,UserBoundary user, Activity activity) {
         this.url = url;
         this.registerUser = user;
         restTemplate = new RestTemplate();
-        dialog = new ProgressDialog(activity);
+
     }
 
     @Override
@@ -29,8 +29,7 @@ public class RestTaskPostUser extends AsyncTask<Void,Void, UserBoundary> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        dialog.setMessage("loading....");
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(false);
+
+
     }
 }

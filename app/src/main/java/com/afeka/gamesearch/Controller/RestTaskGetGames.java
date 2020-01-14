@@ -1,7 +1,5 @@
 package com.afeka.gamesearch.Controller;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import com.afeka.gamesearch.Layout.VideoGameBoundary;
 import com.afeka.gamesearch.Model.VideoGame;
@@ -12,12 +10,10 @@ public class RestTaskGetGames extends AsyncTask<Void,Void, ArrayList<VideoGame>>
 
     private String url;
     private RestTemplate restTemplate;
-    private ProgressDialog dialog;
 
-    public RestTaskGetGames(String url, Activity activity) {
+    public RestTaskGetGames(String url) {
         this.url = url;
         restTemplate = new RestTemplate();
-        dialog = new ProgressDialog(activity);
     }
 
     @Override
@@ -35,16 +31,10 @@ public class RestTaskGetGames extends AsyncTask<Void,Void, ArrayList<VideoGame>>
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        dialog.setMessage("loading....");
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(false);
     }
 
     @Override
     protected void onPostExecute(ArrayList<VideoGame> videoGameResponseEntity) {
         super.onPostExecute(videoGameResponseEntity);
-        if (dialog.isShowing()) {
-            dialog.dismiss();
-        }
     }
 }

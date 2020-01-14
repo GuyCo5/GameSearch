@@ -3,6 +3,7 @@
     <string name="title_activity_search">SearchActivity</string>
 
 
+    <string name="search_by">Search By</string>
     <string name="search">Search</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -17,9 +18,11 @@
     <string name="username_key">usernameKey</string>
     <string name="userType_key">userTypeKey</string>
     <string name="defaultKeyValue" />
-    <string name="server_url">http://10.0.2.2:8090</string>
+    <string name="server_url">http://guyco.qthome.org:8090</string>
     <string name="sign_up">Sign up</string>
     <string name="log_in">Log in</string>
     <string name="AuthLayout">AuthLayout</string>
     <string name="layout_bundle">layoutBundle</string>
+    <string name="login_fail">Login failed!</string>
+    <string name="login_success">Login Success!</string>
 </resources>

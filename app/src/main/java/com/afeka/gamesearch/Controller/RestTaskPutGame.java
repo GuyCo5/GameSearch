@@ -10,18 +10,14 @@ import org.springframework.web.client.RestTemplate;
 
 public class RestTaskPutGame extends AsyncTask<Void,Void, Void> {
 
-
     private String url;
     private RestTemplate restTemplate;
-    private ProgressDialog dialog;
     private VideoGameBoundary videoGameToUpdate;
 
-
-    public RestTaskPutGame(String url,VideoGameBoundary videoGameToUpdate, Activity activity) {
+    public RestTaskPutGame(String url,VideoGameBoundary videoGameToUpdate) {
         this.url = url;
         this.videoGameToUpdate = videoGameToUpdate;
         restTemplate = new RestTemplate();
-        dialog = new ProgressDialog(activity);
     }
 
     @Override
@@ -33,16 +29,10 @@ public class RestTaskPutGame extends AsyncTask<Void,Void, Void> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        dialog.setMessage("loading....");
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(false);
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        if (dialog.isShowing()) {
-            dialog.dismiss();
-        }
     }
 }

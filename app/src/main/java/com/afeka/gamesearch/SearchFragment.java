@@ -1,11 +1,8 @@
 package com.afeka.gamesearch;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.afeka.gamesearch.Controller.FILTER_BY;
 
 public class SearchFragment extends Fragment implements AdapterView.OnItemSelectedListener {

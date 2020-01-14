@@ -1,7 +1,6 @@
 package com.afeka.gamesearch.Controller;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import com.afeka.gamesearch.Layout.UserBoundary;
 
@@ -11,14 +10,12 @@ public class RestTaskPostUser extends AsyncTask<Void,Void, UserBoundary> {
 
     private String url;
     private RestTemplate restTemplate;
-
     private UserBoundary registerUser;
 
-    public RestTaskPostUser(String url,UserBoundary user, Activity activity) {
+    public RestTaskPostUser(String url,UserBoundary user) {
         this.url = url;
         this.registerUser = user;
         restTemplate = new RestTemplate();
-
     }
 
     @Override
@@ -29,7 +26,5 @@ public class RestTaskPostUser extends AsyncTask<Void,Void, UserBoundary> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-
-
     }
 }

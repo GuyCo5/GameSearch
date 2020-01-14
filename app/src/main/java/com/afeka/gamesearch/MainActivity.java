@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.afeka.gamesearch.Model.USERS;
 
@@ -44,11 +46,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        String toastText="";
+        if (resultCode == RESULT_OK){
+            toastText = getString(R.string.login_success);
+        }else if (resultCode ==RESULT_CANCELED){
+            toastText = getString(R.string.login_fail);
+        }
+        Toast.makeText(getBaseContext(),toastText,Toast.LENGTH_SHORT).show();
         validUser();
     }
 
     private void validUser(){
-        if (userManager.getUserType()  != USERS.INVALID){
+        if (!userManager.getUserType().equals(USERS.INVALID)){
             Intent intent = new Intent(this,SearchActivity.class);
             startActivity(intent);
         }

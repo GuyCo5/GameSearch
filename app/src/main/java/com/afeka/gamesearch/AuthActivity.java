@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.afeka.gamesearch.Controller.UserRestIntegration;
 import com.afeka.gamesearch.Model.USERS;
@@ -19,7 +20,7 @@ public class AuthActivity extends AppCompatActivity implements UserRestIntegrati
     private EditText ePassword;
     private Spinner spinner;
     private UserRestIntegration userRestIntegration;
-    private User userSendedForValidation;
+    private User userForValidation;
     private ProgressDialog dialog;
 
     @Override
@@ -42,23 +43,23 @@ public class AuthActivity extends AppCompatActivity implements UserRestIntegrati
             spinner = findViewById(R.id.spinnerUser);
         }
         userManager = new UserManager(getApplicationContext());
-        userSendedForValidation = new User();
+        userForValidation = new User();
         userRestIntegration = new UserRestIntegration(this,this);
     }
 
     public void onClickLogIn(View view) {
 
-        userSendedForValidation.setUserName(eUsername.getText().toString());
-        userSendedForValidation.setPassword(ePassword.getText().toString());
-        userSendedForValidation.setRole(USERS.PLAYER);
-        userRestIntegration.loginUser(userSendedForValidation);
+        userForValidation.setUserName(eUsername.getText().toString());
+        userForValidation.setPassword(ePassword.getText().toString());
+        userForValidation.setRole(USERS.PLAYER);
+        userRestIntegration.loginUser(userForValidation);
     }
 
     public void onClickRegister(View view) {
-        userSendedForValidation.setUserName(eUsername.getText().toString());
-        userSendedForValidation.setPassword(ePassword.getText().toString());
-        userSendedForValidation.setRole(USERS.values()[spinner.getSelectedItemPosition()]);
-        userRestIntegration.registerUser(userSendedForValidation);
+        userForValidation.setUserName(eUsername.getText().toString());
+        userForValidation.setPassword(ePassword.getText().toString());
+        userForValidation.setRole(USERS.values()[spinner.getSelectedItemPosition()]);
+        userRestIntegration.registerUser(userForValidation);
         dialog.setMessage("loading....");
         dialog.show();
         dialog.setCanceledOnTouchOutside(false);
@@ -68,17 +69,20 @@ public class AuthActivity extends AppCompatActivity implements UserRestIntegrati
     public void onRestRegisterComplete(User user) {
         userManager.updateFullUser(user);
         dialog.dismiss();
+        setResult(RESULT_OK);
         finish();
     }
 
     @Override
     public void onRestLoginComplete(User user) {
         userManager.updateFullUser(user);
+        dialog.dismiss();
+        setResult(RESULT_OK);
         finish();
     }
 
     @Override
     public void onRestLoginFail() {
-
+        Toast.makeText(getBaseContext(),R.string.login_fail,Toast.LENGTH_SHORT).show();
     }
 }

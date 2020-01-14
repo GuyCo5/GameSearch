@@ -2,6 +2,7 @@ package com.afeka.gamesearch;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.afeka.gamesearch.Model.USERS;
 import com.afeka.gamesearch.Model.User;
@@ -17,8 +18,7 @@ public class UserManager {
 
     public UserManager(Context context) {
         this.context = context;
-        sharedPref = context.getSharedPreferences(
-                context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        sharedPref = context.getApplicationContext().getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         defaultValue = context.getString(R.string.defaultKeyValue);
 
     }
@@ -85,9 +85,10 @@ public class UserManager {
 
     public void clearUser(){
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.remove(context.getString(R.string.username_key));
-        editor.remove(context.getString(R.string.password_key));
-        editor.remove(context.getString(R.string.userType_key));
-        editor.apply();
+        editor.clear();
+//        editor.remove(context.getString(R.string.username_key));
+//        editor.remove(context.getString(R.string.password_key));
+//        editor.remove(context.getString(R.string.userType_key));
+        editor.commit();
     }
 }

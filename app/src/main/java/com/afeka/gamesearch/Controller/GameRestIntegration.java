@@ -1,11 +1,10 @@
 package com.afeka.gamesearch.Controller;
 
-import android.app.Activity;
+import android.content.Context;
 import com.afeka.gamesearch.Layout.VideoGameBoundary;
 import com.afeka.gamesearch.Model.User;
 import com.afeka.gamesearch.Model.VideoGame;
 import com.afeka.gamesearch.R;
-
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -13,13 +12,11 @@ public class GameRestIntegration {
 
     private String baseUrl;
     private OnRestInteractionListener binder;
-    private Activity activity;
     public enum DELETE_TYPE {ALL, SINGLE}
 
-    public GameRestIntegration(OnRestInteractionListener binder,Activity activity) {
-        this.activity = activity;
+    public GameRestIntegration(OnRestInteractionListener binder, Context context) {
         this.binder = binder;
-        baseUrl = activity.getResources().getString(R.string.server_url);
+        baseUrl = context.getString(R.string.server_url);
     }
 
     public void performSearch(String text,FILTER_BY filter){
@@ -30,7 +27,7 @@ public class GameRestIntegration {
             filterParams += "/" + filter.toString() + "/" + text;
         }
         try {
-            videoGameList = new RestTaskGetGames(baseUrl + filterParams, activity).execute().get();
+            videoGameList = new RestTaskGetGames(baseUrl + filterParams).execute().get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -43,7 +40,7 @@ public class GameRestIntegration {
         String urlExtra = "/game/" + user.getUserName();
         VideoGameBoundary vgb = new VideoGameBoundary(game);
         try {
-            vgb = new RestTaskPostGame(baseUrl + urlExtra,vgb,this.activity).execute().get();
+            vgb = new RestTaskPostGame(baseUrl + urlExtra,vgb).execute().get();
 
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -57,7 +54,7 @@ public class GameRestIntegration {
     public void updateGame (VideoGame game, User user){
         String urlExtra = "/game/" + user.getUserName();
         VideoGameBoundary videoGameBoundary = new VideoGameBoundary(game);
-        new RestTaskPutGame(baseUrl+urlExtra,videoGameBoundary,activity).execute();
+        new RestTaskPutGame(baseUrl+urlExtra,videoGameBoundary).execute();
         binder.onRestUpdateComplete(game);
     }
 
@@ -69,7 +66,7 @@ public class GameRestIntegration {
         } else if (deleteType == DELETE_TYPE.SINGLE){
             urlExtra += user.getUserName() + "/" + videoGame.getGameName();
         }
-        new RestTaskDeleteGame(baseUrl+ urlExtra,activity);
+        new RestTaskDeleteGame(baseUrl+ urlExtra);
         binder.onRestDeleteComplete();
     }
 

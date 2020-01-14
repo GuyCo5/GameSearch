@@ -1,32 +1,29 @@
 package com.afeka.gamesearch.Controller;
 
-import android.app.Activity;
 
+import android.content.Context;
 import com.afeka.gamesearch.Layout.LoginBoundary;
 import com.afeka.gamesearch.Layout.UserBoundary;
 import com.afeka.gamesearch.Model.USERS;
 import com.afeka.gamesearch.Model.User;
 import com.afeka.gamesearch.R;
-
 import java.util.concurrent.ExecutionException;
 
 public class UserRestIntegration {
 
     private String baseUrl;
     private OnRestInteractionListener binder;
-    private Activity activity;
 
-    public UserRestIntegration(OnRestInteractionListener binder, Activity activity) {
-        this.baseUrl = activity.getResources().getString(R.string.server_url);
+    public UserRestIntegration(OnRestInteractionListener binder, Context context) {
+        this.baseUrl = context.getString(R.string.server_url);
         this.binder = binder;
-        this.activity = activity;
     }
 
     public void registerUser(User user){
         UserBoundary userBoundary = new UserBoundary(user);
         String urlExtra = "/register";
         try {
-            userBoundary = new RestTaskPostUser(baseUrl+urlExtra,userBoundary,activity).execute().get();
+            userBoundary = new RestTaskPostUser(baseUrl+urlExtra,userBoundary).execute().get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -40,16 +37,16 @@ public class UserRestIntegration {
         LoginBoundary lb = new LoginBoundary();
         String urlExtra = "/login/" + user.getUserName() + "/" + user.getPassword();
         try {
-            lb = new RestTaskGetUser(baseUrl + urlExtra,activity).execute().get();
+            lb = new RestTaskGetUser(baseUrl + urlExtra).execute().get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        User returnUser = user;
-        if (lb.getUserRole() != ""){
-            returnUser.setRole(USERS.valueOf(lb.getUserRole()));
-            binder.onRestLoginComplete(returnUser);
+
+        if (lb.isValidPass()){
+            user.setRole(USERS.valueOf(lb.getUserRole()));
+            binder.onRestLoginComplete(user);
         } else{
             binder.onRestLoginFail();
         }

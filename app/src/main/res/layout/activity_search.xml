@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity">
+    tools:context=".SearchActivity"
+    android:background="@color/colorBack">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -29,7 +30,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="Game Search"
+        android:text="Game List"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         android:layout_below="@+id/appToolBar"/>
 
@@ -37,7 +38,6 @@
         android:id="@+id/gameRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/darker_gray"
         android:padding="4dp"
         android:scrollbars="vertical"
         android:layout_marginTop="10dp"

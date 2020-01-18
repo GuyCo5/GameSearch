@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
+
 import com.afeka.gamesearch.Controller.FILTER_BY;
 
 public class SearchFragment extends Fragment implements AdapterView.OnItemSelectedListener {
@@ -21,10 +21,9 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
     private OnFragmentInteractionListener mListener;
     private Button searchButton;
     private EditText textInputs;
-    private TextView textLabels;
     private Spinner spinner;
     private int currentPosition;
-
+    private String[] filterList;
     public SearchFragment() {
         // Required empty public constructor
     }
@@ -46,6 +45,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
         spinner.setAdapter(filterAdapter);
         spinner.setOnItemSelectedListener(this);
         currentPosition = 0;
+        filterList = getResources().getStringArray(R.array.FilterBy);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,14 +85,16 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         currentPosition = spinner.getSelectedItemPosition();
         Log.e("search:","outside loop, position is " + position);
-
         if (currentPosition == 0){
             textInputs.setText("");
+            textInputs.setHint("Show all");
             textInputs.setEnabled(false);
         }
         else if (currentPosition != 0){
             textInputs.setText("");
+            textInputs.setHint(filterList[currentPosition]);
             textInputs.setEnabled(true);
+
             if (currentPosition == 3){
                 textInputs.setInputType(InputType.TYPE_CLASS_NUMBER);
             }
@@ -116,7 +118,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
     private void assignViewById(View view){
         searchButton = view.findViewById(R.id.buttonPerformSearch);
         //0.reserve 1. Name; 2.Genre; 3.Year; 4.Company
-        textLabels = view.findViewById(R.id.fragmentNameTextView);
+
         textInputs = view.findViewById(R.id.editTextName);
         spinner = view.findViewById(R.id.spinner);
 

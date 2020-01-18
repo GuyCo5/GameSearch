@@ -1,134 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".GameInfoFragment">
+    tools:context=".GameInfoFragment"
+    android:layout_marginTop="40dp"
+    android:padding="30dp">
 
-    <TextView
-        android:id="@+id/game_info_fragment_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="20dp"
-        android:textColor="@android:color/black"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:text="@string/videoGame" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center">
-
-        <TextView
-            android:id="@+id/game_info_fragment_genre"
-            android:text="Genre:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="20dp"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/game_info_fragment_genre2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="20dp"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:text="Hello"
-            android:layout_toRightOf="@id/game_info_fragment_genre"/>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp">
 
 
-        <TextView
-            android:id="@+id/game_info_fragment_year"
-            android:text="Year:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_below="@id/game_info_fragment_genre"/>
+            <TextView
+                android:id="@+id/game_info_fragment_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/videoGame"
+                android:textColor="@android:color/black"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/game_info_fragment_year2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="20dp"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:layout_toEndOf="@id/game_info_fragment_year"/>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp">
 
-        <TextView
-            android:id="@+id/game_info_fragment_publisher"
-            android:text="Publisher:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_below="@id/game_info_fragment_year"/>
+            <TextView
+                android:id="@+id/game_info_fragment_genre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="@string/genre_d"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/game_info_fragment_publisher2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="20dp"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:layout_toEndOf="@id/game_info_fragment_publisher"/>
+            <TextView
+                android:id="@+id/game_info_fragment_genre2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/game_info_fragment_developer"
-            android:text="Developer:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_below="@id/game_info_fragment_publisher"/>
+        </TableRow>
 
-        <TextView
-            android:id="@+id/game_info_fragment_developer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="20dp"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:layout_toEndOf="@id/game_info_fragment_developer"/>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/game_info_fragment_series"
-            android:text="Series:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_below="@id/game_info_fragment_developer"/>
+            <TextView
+                android:id="@+id/game_info_fragment_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="@string/year_d"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/game_info_fragment_series2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="20dp"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:layout_toEndOf="@id/game_info_fragment_series"/>
+            <TextView
+                android:id="@+id/game_info_fragment_year2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+        </TableRow>
 
-    </RelativeLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/game_info_fragment_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="@string/company_d"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/game_info_fragment_company2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+        </TableRow>
+
+</TableLayout>

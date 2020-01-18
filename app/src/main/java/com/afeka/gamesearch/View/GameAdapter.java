@@ -16,6 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
 
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
     private ArrayList<VideoGame> videoGameList;
     private OnItemClickListener mListener;
 
@@ -23,13 +27,16 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         this.videoGameList = videoGameList;
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.mListener = listener;
+    }
 
 
     @NonNull
     @Override
     public GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_item,parent,false);
-        GameViewHolder gvh = new GameViewHolder(v);
+        GameViewHolder gvh = new GameViewHolder(v,mListener);
         return gvh;
     }
 
@@ -52,17 +59,29 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         public TextView textView1;
         public TextView textView2;
 
-        public GameViewHolder(@NonNull View itemView) {
+
+
+        public GameViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
-            textView1 = itemView.findViewById(R.id.textView);
-            textView2 = itemView.findViewById(R.id.textView2);
+            textView1 = itemView.findViewById(R.id.textViewLine1);
+            textView2 = itemView.findViewById(R.id.textViewLine2);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
+
     }
 
-    public interface OnItemClickListener{
-        void onItemClick(int position);
-    }
+
 
 
     public ArrayList<VideoGame> getVideoGameList() {

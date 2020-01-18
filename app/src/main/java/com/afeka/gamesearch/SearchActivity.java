@@ -29,7 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class SearchActivity extends AppCompatActivity
         implements SearchFragment.OnFragmentInteractionListener,
-                    GameRestIntegration.OnRestInteractionListener {
+                    GameRestIntegration.OnRestInteractionListener,GameAdapter.OnItemClickListener {
     private RecyclerView mRecyclerView;
     private GameAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -55,6 +55,7 @@ public class SearchActivity extends AppCompatActivity
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new GameAdapter(videoGameList);
+        mAdapter.setOnItemClickListener(this);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -138,5 +139,15 @@ public class SearchActivity extends AppCompatActivity
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        USERS type = userManager.getUserType();
+        if (type == USERS.ADMIN) {
+            fragmentManager.beginTransaction().add(R.id.flContent, searchFragment).addToBackStack(null).commit();
+        } else if (type == USERS.PLAYER) {
+
+        }
     }
 }

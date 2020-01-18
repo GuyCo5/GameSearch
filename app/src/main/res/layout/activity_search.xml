@@ -30,7 +30,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="Game List"
+        android:text="@string/game_list"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         android:layout_below="@+id/appToolBar"/>
 
@@ -57,6 +57,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>

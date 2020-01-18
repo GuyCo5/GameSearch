@@ -25,4 +25,10 @@
     <string name="layout_bundle">layoutBundle</string>
     <string name="login_fail">Login failed!</string>
     <string name="login_success">Login Success!</string>
+    <string name="game_list">Game List</string>
+    <string name="game_search">Game Search</string>
+    <string name="show_all">Show all</string>
+    <string name="genre_d">Genre:</string>
+    <string name="company_d">Company:</string>
+    <string name="year_d">Year:</string>
 </resources>

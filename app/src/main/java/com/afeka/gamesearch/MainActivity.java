@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void validUser(){
         if (!userManager.getUserType().equals(USERS.INVALID)){
+            Log.e("user:" ,userManager.getFullUser().toString());
             Intent intent = new Intent(this,SearchActivity.class);
             startActivity(intent);
         }

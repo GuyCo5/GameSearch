@@ -54,7 +54,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                     if (currentPosition!= 0) {
                         text = textInputs.getText().toString();
                     }
-                    mListener.onFragmentInteraction(text,FILTER_BY.values()[0]);
+                    mListener.onFragmentInteraction(text,FILTER_BY.values()[spinner.getSelectedItemPosition()]);
                 }
             }
         });

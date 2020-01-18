@@ -2,19 +2,15 @@ package com.afeka.gamesearch;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
 import com.afeka.gamesearch.Model.USERS;
 import com.afeka.gamesearch.Model.User;
 
 public class UserManager {
 
-    private String userName;
-    private String password;
-    private USERS userType;
+
     private SharedPreferences sharedPref;
     private Context context;
-    String defaultValue;
+    private String defaultValue;
 
     public UserManager(Context context) {
         this.context = context;
@@ -24,46 +20,35 @@ public class UserManager {
     }
 
     public String getUserName() {
-        if (userName == null || userName == "")
-            userName = sharedPref.getString(context.getString(R.string.username_key),defaultValue);
-        return userName;
+        return sharedPref.getString(context.getString(R.string.username_key),defaultValue);
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(context.getString(R.string.username_key),userName);
         editor.apply();
     }
 
     public String getPassword() {
-        if (password == null || password == ""){
-            password = sharedPref.getString(context.getString(R.string.password_key),defaultValue);
-        }
-        return password;
+        return sharedPref.getString(context.getString(R.string.password_key),defaultValue);
     }
 
     public void setPassword(String password) {
-        this.password = password;
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(context.getString(R.string.password_key),password);
         editor.apply();
     }
 
     public USERS getUserType() {
-        if (userType == null){
-            String type = sharedPref.getString(context.getString(R.string.userType_key),defaultValue);
-            if (!type.trim().equals(""))
-                userType = USERS.valueOf(type);
-            else {
-                userType = USERS.INVALID;
-            }
+        String type = sharedPref.getString(context.getString(R.string.userType_key),defaultValue);
+        if (!type.trim().equals(""))
+            return USERS.valueOf(type);
+        else {
+            return USERS.INVALID;
         }
-        return userType;
     }
 
     public void setUserType(USERS userType) {
-        this.userType = userType;
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(context.getString(R.string.userType_key),userType.toString());
         editor.apply();
@@ -86,9 +71,6 @@ public class UserManager {
     public void clearUser(){
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.clear();
-//        editor.remove(context.getString(R.string.username_key));
-//        editor.remove(context.getString(R.string.password_key));
-//        editor.remove(context.getString(R.string.userType_key));
         editor.commit();
     }
 }

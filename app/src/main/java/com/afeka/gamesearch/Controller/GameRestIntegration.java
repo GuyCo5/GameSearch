@@ -1,6 +1,8 @@
 package com.afeka.gamesearch.Controller;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.afeka.gamesearch.Layout.VideoGameBoundary;
 import com.afeka.gamesearch.Model.User;
 import com.afeka.gamesearch.Model.VideoGame;
@@ -24,8 +26,9 @@ public class GameRestIntegration {
         String filterParams= "/games";
 
         if (filter!=FILTER_BY.ALL){
-            filterParams += "/" + filter.toString() + "/" + text;
+            filterParams += "/" + filter.toString().toLowerCase() + "/" + text;
         }
+        Log.e("RestGetGame url:", baseUrl + filterParams);
         try {
             videoGameList = new RestTaskGetGames(baseUrl + filterParams).execute().get();
         } catch (ExecutionException e) {
